@@ -91,7 +91,7 @@ function MovieFilters(props) {
         setMaxYear('')
         setMinRating('')
         setMaxRating('')
-        props.setMoviesList(props.originalMoviesList)
+        props.setCopyList(props.originalMoviesList)
     }
 
 
