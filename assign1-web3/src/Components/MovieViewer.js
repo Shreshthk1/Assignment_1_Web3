@@ -28,7 +28,10 @@ function MovieViewer (props) {
                         <button className="pl-2 pr-2 ml-10 bg-white text-black rounded-full" onClick={() =>{props.setSingleMovieView(false)}}>Close</button>
                     </div>
                     <div className="w-24">
+                        <h1>Ratings</h1>
                         <Ratings ratings={props.selectedMovie.ratings}></Ratings>
+                        <h1>Your Rating</h1>
+                        
                     </div>
                 </div>
             </div>
