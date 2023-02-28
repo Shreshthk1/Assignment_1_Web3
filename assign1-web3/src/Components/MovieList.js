@@ -1,31 +1,43 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 function MovieList(props) {
     const [moviesList, setMoviesList] = useState(props.moviesList)
+    const [moviesListCopy, setCopiedMovies] = useState(() =>{
+            if (props.searchedTitle !== "") {
+        let tempArr = props.moviesList.filter(movie => {
+            let currMovieTitle = movie.title.toLowerCase()
+            return currMovieTitle.includes(props.searchedTitle.toLowerCase())
+        })
+        return tempArr
+        } else {
+            return [...props.moviesList]
+        }
+    })
+
     
+
     const filterTitle = () => {
-        
-        let tempList = moviesList.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
-        setMoviesList([...tempList])
+        let tempList = moviesListCopy.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+        setCopiedMovies([...tempList])
     }
 
     const filterYear = () => {
         
-        let tempList = moviesList.sort((a,b) => Number(a.release_date.substring(0,4)) - Number(b.release_date.substring(0,4)))
-        setMoviesList([...tempList])
+        let tempList = moviesListCopy.sort((a,b) => Number(a.release_date.substring(0,4)) - Number(b.release_date.substring(0,4)))
+        setCopiedMovies([...tempList])
     }
     const filterRating = () => {
         console.log('CLICK')
-        let tempList = moviesList.sort((a,b) => a.ratings.average - b.ratings.average)
-        setMoviesList([...tempList])
+        let tempList = moviesListCopy.sort((a,b) => a.ratings.average - b.ratings.average)
+        setCopiedMovies([...tempList])
     }
     const filterPopularity = () => {
-        let tempList = moviesList.sort((a,b) => a.ratings.popularity - b.ratings.popularity)
-        setMoviesList([...tempList])
+        let tempList = moviesListCopy.sort((a,b) => a.ratings.popularity - b.ratings.popularity)
+        setCopiedMovies([...tempList])
     }
 
     const addToFav = (e) => {
         let movieID = Number(e.target.id)
-        let favMovie = moviesList.filter(movie => movie.id === movieID)
+        let favMovie = moviesListCopy.filter(movie => movie.id === movieID)
         props.addToFav(favMovie);
     }
 
@@ -43,7 +55,8 @@ function MovieList(props) {
                 
                 </thead>
                 <tbody>
-                    {props.moviesList.map(movie => {
+                    {
+                    moviesListCopy.map(movie => {
                         return (
                             <tr className="">
                                 <td className="bg-white rounded-l-lg flex justify-center"><img src={"https://image.tmdb.org/t/p/w92/" + movie.poster} className="rounded-md"></img></td>

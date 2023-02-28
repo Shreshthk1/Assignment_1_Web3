@@ -9,7 +9,6 @@ function MovieBrowser (props) {
     const [moviesList, setOriginalMoviesList] = useState(props.moviesList);
     const [moviesListCopy, setCopyList] = useState(props.moviesList)
     const [favoriteList, setFavorites] = useState([])
-
     const genreList = []
         moviesList.map(movie => {
         movie.details.genres.map(genre => {
@@ -33,10 +32,10 @@ function MovieBrowser (props) {
 
     return(
         <main className = "w-screen h-screen overflow-hidden"style={{backgroundImage: `url("/MoviesList-Background.jpg")`}}>
-            <Header></Header>
+            <Header setIsBrowse={props.setIsBrowse}></Header>
             <div className="flex gap-5 space-between">
-                <MovieFilters genres={genreList} setMoviesList={setCopyList} moviesList={moviesListCopy} originalMoviesList={moviesList}></MovieFilters>
-                <MovieList moviesList={moviesListCopy} addToFav={addToFav}></MovieList>
+                <MovieFilters genres={genreList} setCopyList={setCopyList} moviesList={moviesListCopy} originalMoviesList={moviesList}></MovieFilters>
+                <MovieList moviesList={moviesListCopy} addToFav={addToFav} searchedTitle={props.searchedTitle}></MovieList>
                 <Favorites favoriteMovies={favoriteList}></Favorites>
             </div>
         </main>

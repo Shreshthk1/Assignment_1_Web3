@@ -25,17 +25,17 @@ useEffect(()=> {
       localStorage.setItem('Movies', data)
     });
   }
-});
+}, []);
 
   return (
-
-  <BrowserRouter>
-  <Routes>
-    <Route path = "/" element = {<Home moviesList={movies} setSelected={setSelected}/>} />
-    <Route path = "/browse" element = {<MovieBrowser searchedMovie={selectedMovie} moviesList={movies}/>} />
-    <Route path = "/movie" element = {<MovieViewer></MovieViewer>}></Route>
-  </Routes>
-  </BrowserRouter>
+  <Home moviesList={movies} setSelected={setSelected}/>
+  // <BrowserRouter>
+  // <Routes>
+  //   <Route path = "/" element = {} />
+  //   <Route path = "/browse" element = {<MovieBrowser searchedMovie={selectedMovie} moviesList={movies}/>} />
+  //   <Route path = "/movie" element = {<MovieViewer></MovieViewer>}></Route>
+  // </Routes>
+  // </BrowserRouter>
     
   );
 }
