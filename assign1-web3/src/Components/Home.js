@@ -26,7 +26,7 @@ class Home extends React.Component{
     render() {
         return(
             <main className="bg-no-repeat bg-cover  "style={{backgroundImage: `url("/Home-Background.jpg")`}} > 
-                {this.state.isBrowse ? <MovieBrowser moviesList = {this.state.moviesList} searchedTitle={this.state.titleInput} setIsBrowse ={this.setIsBrowse}></MovieBrowser> : 
+                {this.state.isBrowse ? <MovieBrowser moviesList = {this.props.moviesList} searchedTitle={this.state.titleInput} setIsBrowse ={this.setIsBrowse}></MovieBrowser> : 
                 <div className="w-screen h-screen flex items-center justify-center backdrop-blur-md">
                     <div className="card w-1/4 bg-white shadow-lg rounded  flex flex-col p-5" >
                         <div className="w-full text-3xl">

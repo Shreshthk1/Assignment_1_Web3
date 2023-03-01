@@ -1,42 +1,29 @@
 import './App.css';
 import Home from './Components/Home.js'
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MovieBrowser from './Components/MovieBrowser';
-import {movieData} from './movieData.js'
-import MovieViewer from './Components/MovieViewer';
-
-
 
 function App() {
-let movieList = movieData.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
-const [movies, setMovies] = useState(movieList);
+
+const [movies, setMovies] = useState([]);
 const [selectedMovie, setSelected] = useState({});
 
 useEffect(()=> {
-  if(localStorage.getItem('Movies') == null) {
-    setMovies(localStorage.getItem('Movies'))
+  if(localStorage.getItem('Movies') != null) {
+    setMovies(JSON.parse(localStorage.getItem('Movies')))
   } else {
-    const url = "";
+    const url = "https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?limit=20";
     fetch(url)
-    .then(resp => resp.json)
+    .then(resp => resp.json())
     .then(data => {
-      setMovies(data); 
-      localStorage.setItem('Movies', data)
+      let movieList = data.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+      setMovies([...movieList]);
+      localStorage.setItem('Movies', JSON.stringify(movieList))
     });
   }
 }, []);
 
   return (
   <Home moviesList={movies} setSelected={setSelected}/>
-  // <BrowserRouter>
-  // <Routes>
-  //   <Route path = "/" element = {} />
-  //   <Route path = "/browse" element = {<MovieBrowser searchedMovie={selectedMovie} moviesList={movies}/>} />
-  //   <Route path = "/movie" element = {<MovieViewer></MovieViewer>}></Route>
-  // </Routes>
-  // </BrowserRouter>
-    
   );
 }
 
