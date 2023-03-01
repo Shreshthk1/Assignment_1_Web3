@@ -11,8 +11,8 @@ function Favorites (props) {
             <ul className="">
                 {
                     props.favoriteMovies.map(movie => {
-                        return (<li className="flex "><img src={"https://image.tmdb.org/t/p/w92/" + movie.poster} className="rounded-lg p-5"></img> <p className="text-center m-auto text-white">{movie.title}</p></li>)
-                    })
+                        return (<li className="flex "><img src={"https://image.tmdb.org/t/p/w92/" + movie.poster} onError="https://via.placeholder.com/92" className="rounded-lg p-5"></img> <p className="text-center m-auto text-white">{movie.title}</p></li>)
+                    })  
                 }
             </ul>
         </div>
