@@ -1,3 +1,5 @@
+import User_ratings from "./User_ratings";
+
 function Ratings (props) {
     let rating = Math.round(props.ratings.average*2)/2;
     
@@ -15,8 +17,10 @@ function Ratings (props) {
 
     return(
         <div className="w-1/2 flex justify-between bg-white rounded-xl">
-            {stars.map(image => image)}            
+            {stars.map(image => image)}
         </div>
     )
+
+
 }
 export default Ratings
