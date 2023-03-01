@@ -33,6 +33,10 @@ function MovieBrowser (props) {
         }
     }
 
+    const checkMovies = ()=> {
+
+    }
+
     return(
         <main className = "w-screen h-screen overflow-hidden"style={{backgroundImage: `url("/MoviesList-Background.jpg")`}}>
             <Header setIsBrowse={props.setIsBrowse} ></Header>

@@ -2,17 +2,7 @@ import { useEffect, useState } from "react"
 import MovieViewer from "./MovieViewer"
 function MovieList(props) {
     const [moviesList, setMoviesList] = useState(props.moviesList)
-    const [moviesListCopy, setCopiedMovies] = useState(() =>{
-        if (props.searchedTitle !== "") {
-            let tempArr = props.moviesList.filter(movie => {
-            let currMovieTitle = movie.title.toLowerCase()
-            return currMovieTitle.includes(props.searchedTitle.toLowerCase())
-            })
-        return tempArr
-        } else {
-            return [...props.moviesList]
-        }
-    })
+    const [moviesListCopy, setCopiedMovies] = useState([])
     
     
 
@@ -62,11 +52,8 @@ function MovieList(props) {
                     
                     </thead>
                     <tbody>
-                        {
+                        { 
                         props.moviesList.map(movie => {
-                            if(props.searchedTitle !== ""){
-
-                            } else{}
                             return (
                                 <tr className="" style={{marginBottom: '5px'}}>
                                     <td className="bg-white rounded-l-lg flex justify-center"><img src={"https://image.tmdb.org/t/p/w92/" + movie.poster} onError="https://via.placeholder.com/92" className="rounded-md"></img></td>

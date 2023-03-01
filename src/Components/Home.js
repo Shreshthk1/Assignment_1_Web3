@@ -15,10 +15,20 @@ class Home extends React.Component{
     }
 
     textChange = (e) => {
+        if (e.target.value !== "") {
+            let tempArr = this.props.moviesList.filter(movie => {
+            let currMovieTitle = movie.title.toLowerCase()
+            return currMovieTitle.includes(e.target.value.toLowerCase())
+            })
+            this.setState({moviesList: tempArr})
+        } else {
+            this.setState({moviesList: this.props.moviesList})
+        }
         this.setState({titleInput: e.target.value})
     }
     
     setIsBrowse = () => {
+        
         this.setState({isBrowse: false})
     }
 
